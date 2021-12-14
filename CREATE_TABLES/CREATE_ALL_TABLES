@@ -1,1 +1,25 @@
+CREATE TABLE Weapons(
+WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL UNIQUE,
+WeaponName CHAR(50) NOT NULL,
+PowerLevel INT NOT NULL,
+Range INT NOT NULL,
+CONSTRAINT PK_WeaponS PRIMARY KEY (WeaponID)
+);
 
+CREATE TABLE PublicTransportation(
+PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL UNIQUE,
+PublicTransportationType CHAR(50) NOT NULL,
+CONSTRAINT PK_PublicTransportation PRIMARY KEY (PublicTransportationID)
+);
+
+CREATE TABLE Skills(
+SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL UNIQUE,
+Skill CHAR(30) NOT NULL,
+CONSTRAINT PK_Skills PRIMARY KEY (SkillID)
+);
+
+CREATE TABLE Currency(
+CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') NOT NULL UNIQUE,
+CurrencyType CHAR(30) NOT NULL,
+CONSTRAINT PK_Currency PRIMARY KEY (CurrencyID)
+);
