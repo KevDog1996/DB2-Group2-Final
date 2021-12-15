@@ -23,3 +23,25 @@ CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') NOT NULL UNIQUE,
 CurrencyType CHAR(30) NOT NULL,
 CONSTRAINT PK_Currency PRIMARY KEY (CurrencyID)
 );
+
+CREATE TABLE Regions(
+RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL UNIQUE,
+RegionName CHAR(50) NOT NULL UNIQUE,
+Climate CHAR(50) NOT NULL,
+Capital CHAR(30) CHECK(Capital LIKE 'S%') NOT NULL UNIQUE,
+CONSTRAINT PK_Regions PRIMARY KEY (RegionID)
+);
+
+Create TABLE Landmarks(
+LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL UNIQUE,
+LandmarkType VARCHAR(100) NOT NULL,
+CONSTRAINT PK_Landmarks PRIMARY KEY (LandmarkID)
+);
+
+CREATE TABLE RegionLandmarks(
+SpecificLandmarkKey VARCHAR(8) CHECK(SpecificLandmarkKey LIKE 'SL%') NOT NULL UNIQUE,
+LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
+RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
+LandmarkName VARCHAR(20) NOT NULL,
+CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkKey)
+);
