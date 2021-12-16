@@ -5655,3 +5655,48 @@ INSERT INTO Landmarks VALUES('L00008', 'Steppe');
 INSERT INTO Landmarks VALUES('L00009', 'Desert');
 INSERT INTO Landmarks VALUES('L00010', 'Valley');
 INSERT INTO Landmarks VALUES('L00011', 'Monuments');
+
+/* Weapons table */
+
+INSERT INTO Weapons(WeaponID, WeaponName, PowerLevel, Range)
+VALUES
+('W0000000','Spear',1,0),
+('W0000001','Sword',1,0),
+('W0000002','Bow and Arrow',1,320),
+('W0000003','Hunting Rifle',3,1000),
+('W0000004','Assault Rifle',4,800),
+('W0000005','Shield',1,0),
+('W0000006','Molotov',1,45),
+('W0000007','Barrett M82',5,1800)
+GO
+
+/* PublicTransportation table */
+
+INSERT INTO PublicTransportation(PublicTransportationID,PublicTransportationType)
+VALUES 
+('PT000000','Train'),
+('PT000001','Bus'),
+('PT000002','Plane')
+GO
+
+/* Currency table */
+
+INSERT INTO Currency(CurrencyID, CurrencyType)
+VALUES
+('C0000000','Water Bottle'),
+('C0000001','Water Filter')
+GO
+
+/* Skills table */
+
+INSERT INTO Skills(SkillID, Skill)
+VALUES
+('K0000000','Archery'),
+('K0000001','Baking'),
+('K0000002','Fighting'),
+('K0000003','Marksman'),
+('K0000004','Navigator'),
+('K0000005','Hunter'),
+('K0000006','Chef'),
+('K0000007','Basketweaver')
+GO
