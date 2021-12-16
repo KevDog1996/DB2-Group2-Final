@@ -53,3 +53,17 @@ RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
 LandmarkName VARCHAR(20) NOT NULL,
 CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkKey)
 );
+
+CREATE TABLE Food (
+    FoodID VARCHAR(8) CHECK (FoodID LIKE 'F%') UNIQUE NOT NULL,
+    FoodTypeID VARCHAR(8) CHECK(FoodTypeID LIKE 'FT%') NOT NULL,
+    FoodName VARCHAR(100) NOT NULL,
+    FoodDescription CHAR(200)NOT NULL,
+    FoodGoodByrange VARCHAR(100)NOT NULL
+);
+
+CREATE TABLE FoodType (
+    FoodTypeID VARCHAR(8) NOT NULL UNIQUE,
+    FoodType VARCHAR(50) NOT NULL,
+    FoodType_Description CHAR(100) NOT NULL
+);
