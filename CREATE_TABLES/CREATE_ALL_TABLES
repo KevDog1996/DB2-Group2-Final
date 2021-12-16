@@ -1,3 +1,11 @@
+USE master;
+
+CREATE DATABASE Group2DoomsDay;
+GO
+
+USE Group2DoomsDay;
+GO
+
 CREATE TABLE Weapons(
 WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL UNIQUE,
 WeaponName CHAR(50) NOT NULL,
