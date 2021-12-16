@@ -5637,3 +5637,21 @@ Values
 	('S00043','Eagan','R00002','PP00067'),
 	('S00044','Burnsville','R00002','PP00127');
 
+--------Regions Data
+INSERT INTO Regions VALUES('R00000', 'Minnesota', 'Cold', 'S00000');
+INSERT INTO Regions VALUES('R00001', 'Finland', 'Cold', 'S00023');
+INSERT INTO Regions VALUES('R00002', 'Egypt', 'Warm', 'S00032');
+
+--------Landmarks Data
+INSERT INTO Landmarks VALUES('L00000', 'River');
+INSERT INTO Landmarks VALUES('L00001', 'Stream');
+INSERT INTO Landmarks VALUES('L00002', 'Pond');
+INSERT INTO Landmarks VALUES('L00003', 'Lake');
+INSERT INTO Landmarks VALUES('L00004', 'Sea');
+INSERT INTO Landmarks VALUES('L00005', 'Ocean');
+INSERT INTO Landmarks VALUES('L00006', 'Mountain');
+INSERT INTO Landmarks VALUES('L00007', 'Hill');
+INSERT INTO Landmarks VALUES('L00008', 'Steppe');
+INSERT INTO Landmarks VALUES('L00009', 'Desert');
+INSERT INTO Landmarks VALUES('L00010', 'Valley');
+INSERT INTO Landmarks VALUES('L00011', 'Monuments');
