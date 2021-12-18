@@ -1,3 +1,0 @@
-/* Dead or alive query */
-Select * From People
-ORDER BY Alive Desc;
