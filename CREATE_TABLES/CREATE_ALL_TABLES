@@ -58,8 +58,8 @@ CREATE TABLE Food (
     FoodID VARCHAR(8) CHECK (FoodID LIKE 'F%') UNIQUE NOT NULL,
     FoodTypeID VARCHAR(8) CHECK(FoodTypeID LIKE 'FT%') NOT NULL,
     FoodName VARCHAR(100) NOT NULL,
-    FoodDescription CHAR(200)NOT NULL,
-    FoodGoodByrange VARCHAR(100)NOT NULL
+    FoodDescription VARCHAR(200)NOT NULL,
+    FoodGoodByrange INT
 );
 
 CREATE TABLE FoodType (
