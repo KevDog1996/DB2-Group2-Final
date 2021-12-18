@@ -5667,7 +5667,7 @@ VALUES
 ('W0000004','Assault Rifle',4,800),
 ('W0000005','Shield',1,0),
 ('W0000006','Molotov',1,45),
-('W0000007','Barrett M82',5,1800)
+('W0000007','Barrett M82',5,1800);
 GO
 
 /* PublicTransportation table */
@@ -5676,7 +5676,7 @@ INSERT INTO PublicTransportation(PublicTransportationID,PublicTransportationType
 VALUES 
 ('PT000000','Train'),
 ('PT000001','Bus'),
-('PT000002','Plane')
+('PT000002','Plane');
 GO
 
 /* Currency table */
@@ -5684,7 +5684,7 @@ GO
 INSERT INTO Currency(CurrencyID, CurrencyType)
 VALUES
 ('C0000000','Water Bottle'),
-('C0000001','Water Filter')
+('C0000001','Water Filter');
 GO
 
 /* Skills table */
@@ -5698,7 +5698,7 @@ VALUES
 ('K0000004','Navigator'),
 ('K0000005','Hunter'),
 ('K0000006','Chef'),
-('K0000007','Basketweaver')
+('K0000007','Basketweaver');
 GO
 
 /* FoodType Table */
@@ -10884,3 +10884,16 @@ INSERT INTO Landmarks(LandmarkID,LandmarkType)
 		('L00009', 'Desert'),
 		('L00010', 'Valley'),
 		('L00011', 'Monuments');
+		
+/* Occupation Table */
+INSERT INTO Occupation(OccupationID, OccupationDescription)
+VALUES
+('O0000000','Merchant'),
+('O0000001','Banker'),
+('O0000002','Pilot'),
+('O0000003','Bus Driver'),
+('O0000004','Conductor'),
+('O0000005','Bounty Hunter'),
+('O0000006','Farmer'),
+('O0000007','Carpenter');
+GO
