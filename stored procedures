@@ -13,7 +13,7 @@ BEGIN
 END
 
 /* people dead procedure */
-CREATE PROCEDURE GetAlivePeople()
+CREATE PROCEDURE GetDeadPeople()
 BEGIN
 	Select * From People
 	WHERE Alive = 0;
