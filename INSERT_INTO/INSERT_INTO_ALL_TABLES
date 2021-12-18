@@ -5701,6 +5701,20 @@ VALUES
 ('K0000007','Basketweaver');
 GO
 
+/* Occupation Table */
+INSERT INTO Occupation(OccupationID, OccupationDescription)
+VALUES
+('O0000000','Merchant'),
+('O0000001','Banker'),
+('O0000002','Pilot'),
+('O0000003','Bus Driver'),
+('O0000004','Conductor'),
+('O0000005','Bounty Hunter'),
+('O0000006','Farmer'),
+('O0000007','Carpenter'),
+('O0000008','Chef');
+GO
+
 /* FoodType Table */
 INSERT INTO Food (FoodID, FoodTypeID, FoodName, FoodType_Description, FoodGoodByRange)
 VALUES
@@ -10885,15 +10899,4 @@ INSERT INTO Landmarks(LandmarkID,LandmarkType)
 		('L00010', 'Valley'),
 		('L00011', 'Monuments');
 		
-/* Occupation Table */
-INSERT INTO Occupation(OccupationID, OccupationDescription)
-VALUES
-('O0000000','Merchant'),
-('O0000001','Banker'),
-('O0000002','Pilot'),
-('O0000003','Bus Driver'),
-('O0000004','Conductor'),
-('O0000005','Bounty Hunter'),
-('O0000006','Farmer'),
-('O0000007','Carpenter');
-GO
+
