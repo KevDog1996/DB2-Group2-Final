@@ -1,0 +1,41 @@
+/* Food Count Procedure */
+CREATE PROCEDURE GetAllFoodCount()
+Begin
+	Select * From FoodInventory
+	ORDER BY Quantity DESC;
+END
+
+/* People Alive procedure */
+CREATE PROCEDURE GetAlivePeople()
+BEGIN
+	Select * From People
+	WHERE Alive = 1;
+END
+
+/* people dead procedure */
+CREATE PROCEDURE GetAlivePeople()
+BEGIN
+	Select * From People
+	WHERE Alive = 0;
+END
+
+/* Weapon Inventory Procedure */
+CREATE PROCEDURE GetWeaponInventory()
+BEGIN 
+	SELECT * FROM WeaponsInventory
+	ORDER BY Quantity DESC;
+END
+
+/* Currency Lookup Procedure */
+CREATE PROCEDURE CurrencyLookup()
+BEGIN 
+	SELECT * FROM CurrencyInventory
+	ORDER BY Quantity DESC;
+END
+
+/* Skill Proficiency Stored Procedure */
+CREATE PROCEDURE SkillCheck()
+BEGIN 
+	SELECT * FROM PersonSkill
+	ORDER BY SkillProficiency DESC;
+END
