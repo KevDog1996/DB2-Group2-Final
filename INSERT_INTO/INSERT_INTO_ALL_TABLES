@@ -10863,20 +10863,24 @@ VALUES
 	('P05453','F016',5,'2021-26-07'),('P05453','F018',6,'2021-53-15');
 
 --------Regions Data
-INSERT INTO Regions VALUES('R00000', 'Minnesota', 'Cold', 'S00000');
-INSERT INTO Regions VALUES('R00001', 'Finland', 'Cold', 'S00023');
-INSERT INTO Regions VALUES('R00002', 'Egypt', 'Warm', 'S00032');
+INSERT INTO Regions(RegionID, RegionName, Climate, Capital)
+	VALUES
+		('R00000', 'Minnesota', 'Cold', 'S00000'), 
+		('R00001', 'Finland', 'Cold', 'S00023'),
+		('R00002', 'Egypt', 'Warm', 'S00032');
 
 --------Landmarks Data
-INSERT INTO Landmarks VALUES('L00000', 'River');
-INSERT INTO Landmarks VALUES('L00001', 'Stream');
-INSERT INTO Landmarks VALUES('L00002', 'Pond');
-INSERT INTO Landmarks VALUES('L00003', 'Lake');
-INSERT INTO Landmarks VALUES('L00004', 'Sea');
-INSERT INTO Landmarks VALUES('L00005', 'Ocean');
-INSERT INTO Landmarks VALUES('L00006', 'Mountain');
-INSERT INTO Landmarks VALUES('L00007', 'Hill');
-INSERT INTO Landmarks VALUES('L00008', 'Steppe');
-INSERT INTO Landmarks VALUES('L00009', 'Desert');
-INSERT INTO Landmarks VALUES('L00010', 'Valley');
-INSERT INTO Landmarks VALUES('L00011', 'Monuments');
+INSERT INTO Landmarks(LandmarkID,LandmarkType)
+	VALUES
+		('L00000', 'River'),
+		('L00001', 'Stream'),
+		('L00002', 'Pond'),
+		('L00003', 'Lake'),
+		('L00004', 'Sea'),
+		('L00005', 'Ocean'),
+		('L00006', 'Mountain'),
+		('L00007', 'Hill'),
+		('L00008', 'Steppe'),
+		('L00009', 'Desert'),
+		('L00010', 'Valley'),
+		('L00011', 'Monuments');
