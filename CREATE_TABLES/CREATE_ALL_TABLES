@@ -72,16 +72,6 @@ CREATE TABLE FoodType (
     FoodType_Description CHAR(100) NOT NULL
 );
 
-CREATE TABLE AvailiableRoutes(
-    RouteID VARCHAR(8) CHECK (RouteID LIKE 'RO%') UNIQUE NOT NULL,
-    SettlementSource CHAR(30) NOT NULL,
-    SettlementDestination CHAR(30) NOT NULL,
-    PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL,
-    CONSTRAINT AvailiableRoutesFKPublicTransportation FOREIGN KEY(PublicTransportationID) REFERENCES PublicTransportation(PublicTransportationID),
-    CONSTRAINT AvailiableRoutesFKSettlementSource FOREIGN KEY (SettlementSource) REFERENCES Settlements(SettlementSource),
-    CONSTRAINT AvailiableRoutesFKSettlementDestination FOREIGN KEY (SettlementDestination) REFERENCES Settlements(SettlementDestination)
-);
-
 /* Occupation Table */
 
 CREATE TABLE Occupation(
@@ -96,8 +86,8 @@ FirstName VARCHAR(30) NOT NULL,
 LastName VARCHAR(30) NOT NULL,
 MiddleInitial VARCHAR(1) NULL,
 Gender BIT NOT NULL,
-Alive BIT DEFAULT 0 NOT NULL 
-SettlementID Varchar(8) NOTNUll,
+Alive BIT DEFAULT 0 NOT NULL , 
+SettlementID Varchar(8) NOT NUll,
 Primary Key(PersonID),
 Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
 );
@@ -250,7 +240,6 @@ CREATE TABLE ChallengeLevel(
 	ChanceOfDeath VARCHAR(30) NOT NULL,
 	NeedsGroupToKill VARCHAR(20) NOT NULL
 );
-GO
 
 /*EnemyType Table*/
 CREATE TABLE EnemyType(
@@ -260,9 +249,8 @@ CREATE TABLE EnemyType(
 	Bounty INT NOT NULL,
 	CurrencyID VARCHAR(8) NOT NULL,
 	FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID),
-	FOREIGN KEY (ChallengeLevelID) REFERENCES Challenge_Level(ChallengeLevelID) 
+	FOREIGN KEY (ChallengeLevelID) REFERENCES ChallengeLevel(ChallengeLevelID) 
 );
-GO
 
 /*Enemies Table*/
 CREATE TABLE Enemies(
@@ -271,7 +259,6 @@ CREATE TABLE Enemies(
 	Alive INT NOT NULL,
 	Name Char(30) NULL,
 	EnTypeID VARCHAR(8) NOT NULL,
-	FOREIGN KEY (SpecificLandmarkKey) REFERENCES RegionLandmarks(SpecificLandmarkKey),
+	FOREIGN KEY (SpecificLandmarkID) REFERENCES RegionLandmarks(SpecificLandmarkKID),
 	FOREIGN KEY (EnTypeID) REFERENCES EnemyType(EnTypeID)
 );
-GO
