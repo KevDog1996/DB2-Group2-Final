@@ -5772,7 +5772,7 @@ INSERT INTO Food VALUES
 
     GO
     /* Food Table */
-    INSERT INTO Food (FoodTypeID, FoodType, FoodType_Description)
+INSERT INTO Food (FoodTypeID, FoodType, FoodType_Description)
     VALUES 
     ('FT001','Baked Goods','Made by using varying ingredients'),
     ('FT002','Canned Goods','Canned goods, makes the item last longer'),
@@ -31761,34 +31761,34 @@ Insert into BuisnessCurrency(BuisnessID, CurrencyID, Qty)
 
 /*Item Table */
 INSERT INTO Items(ItemID,ItemName)
-VALUES
-('I0000000','BedRoll'),
-('I0000001','Tent'),
-('I0000002','Camper'),
-('I0000003','Lighter'),
-('I0000004','Flint'),
-('I0000005','Fire Starter'),
-('I0000006','Pots'),
-('I0000007','Pans'),
-('I0000008','Silverware'),
-('I0000009','Hammer'),
-('I0000010','Drill'),
-('I0000011','Nails'),
-('I0000012','Wood'),
-('I0000013','Propane'),
-('I0000014','Oil lantern'),
-('I0000015','Bandages'),
-('I0000016','Splint'),
-('I0000017','Sled'),
-('I0000018','Gas'),
-('I0000019','Lockpick'),
-('I0000020','Gas mask'),
-('I0000021','Jacket'),
-('I0000022','Hat'),
-('I0000023','Gloves'),
-('I0000024','Pants'),
-('I0000025','Underwear'),
-('I0000026','Socks');
+	VALUES
+	('I0000000','BedRoll'),
+	('I0000001','Tent'),
+	('I0000002','Camper'),
+	('I0000003','Lighter'),
+	('I0000004','Flint'),
+	('I0000005','Fire Starter'),
+	('I0000006','Pots'),
+	('I0000007','Pans'),
+	('I0000008','Silverware'),
+	('I0000009','Hammer'),
+	('I0000010','Drill'),
+	('I0000011','Nails'),
+	('I0000012','Wood'),
+	('I0000013','Propane'),
+	('I0000014','Oil lantern'),
+	('I0000015','Bandages'),
+	('I0000016','Splint'),
+	('I0000017','Sled'),
+	('I0000018','Gas'),
+	('I0000019','Lockpick'),
+	('I0000020','Gas mask'),
+	('I0000021','Jacket'),
+	('I0000022','Hat'),
+	('I0000023','Gloves'),
+	('I0000024','Pants'),
+	('I0000025','Underwear'),
+	('I0000026','Socks');
 GO
 
 Insert into PersonItemsInventroy(PersonID,ItemID,Quantity) 
