@@ -106,7 +106,7 @@ Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
 /*Items Table */
 
 CREATE TABLE Items(
-ItemID VARCHAR(8) CHECK(ItemID LIKE 'I') NOT NULL UNIQUE,
+ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%') NOT NULL UNIQUE,
 ItemName CHAR(50) NOT NULL,
 CONSTRAINT PK_ItemsID PRIMARY KEY (ItemID)
 );
