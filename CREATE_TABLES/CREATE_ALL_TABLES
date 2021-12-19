@@ -25,7 +25,7 @@ CREATE TABLE Business(
     BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%') NOT NULL UNIQUE,
     BusinessName CHAR(50) NOT NULL,
     BusinessType CHAR(100) NOT NULL,
-    PersonID VARCHAR(8) CHECK(BusinessID LIKE 'P%') NOT NULL,
+    PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
     CONSTRAINT PK_BusinessID PRIMARY KEY (BusinessID),
     CONSTRAINT BusinessFKPersonID FOREIGN KEY (PersonID) REFERENCES People(PersonID)
 );
