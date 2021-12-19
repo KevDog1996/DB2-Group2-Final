@@ -62,7 +62,8 @@ CREATE TABLE Food (
     FoodTypeID VARCHAR(8) CHECK(FoodTypeID LIKE 'FT%') NOT NULL,
     FoodName VARCHAR(100) NOT NULL,
     FoodDescription VARCHAR(200)NOT NULL,
-    FoodGoodByrange INT
+    FoodGoodByrange INT,
+    CONSTRAINT FK_FoodTypeID FOREIGN KEY(FoodtypeID) REFERENCES FoodType(FoodTypeID)
 );
 
 CREATE TABLE FoodType (
