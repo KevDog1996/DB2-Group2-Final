@@ -87,3 +87,92 @@ SettlementID Varchar(8) NOTNUll,
 Primary Key(PersonID),
 Foreign Key(SettlementID) Refrences Settlements(SettlementID)
 );
+/* item */
+CREATE TABLE PersonItemInventory (
+PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') UNIQUE NOT NULL,
+Quantity INT NOT NULL,
+ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%') UNIQUE NOT NULL,
+)
+
+CREATE TABLE BusinessItemInventory (
+BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%') UNIQUE NOT NULL,
+Quantity INT NOT NULL,
+ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%') UNIQUE NOT NULL,
+)
+
+CREATE TABLE SettlementItemInventory (
+SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')  UNIQUE NOT NULL,
+Quantity INT NOT NULL,
+ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%') UNIQUE NOT NULL,
+)
+
+/* currency */
+CREATE TABLE PersonCurrencyInventory (
+PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') UNIQUE NOT NULL, 
+Quantity INT, 
+CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') UNIQUE NOT NULL
+)
+
+CREATE TABLE BusinessCurrencyInventory (
+BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%') UNIQUE NOT NULL,
+Quantity INT, 
+CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') UNIQUE NOT NULL
+)
+
+CREATE TABLE SettlementCurrencyInventory (
+SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')  UNIQUE NOT NULL, 
+Quantity INT, 
+CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') UNIQUE NOT NULL
+)
+
+/* weapon */
+CREATE TABLE PersonWeaponInventory(
+PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') UNIQUE NOT NULL, 
+WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
+Quantity INT NOT NULL
+)
+
+CREATE TABLE BusinessWeaponInventory(
+BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%') UNIQUE NOT NULL, 
+WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
+Quantity INT NOT NULL
+)
+
+CREATE TABLE SettlementWeaponInventory(
+SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')  UNIQUE NOT NULL, 
+WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
+Quantity INT NOT NULL
+)
+/* food */
+CREATE TABLE PersonFoodInventory (
+PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') UNIQUE NOT NULL, 
+FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%') UNIQUE NOT NULL,
+Quantity INT NOT NULL, 
+AcquireDate DATE NOT NULL
+)
+
+CREATE TABLE BusinessFoodInventory (
+BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%') UNIQUE NOT NULL,
+FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%') UNIQUE NOT NULL,
+Quantity INT NOT NULL, 
+AcquireDate DATE NOT NULL
+)
+
+CREATE TABLE SettlementFoodInventory (
+SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')  UNIQUE NOT NULL, 
+FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%') UNIQUE NOT NULL,
+Quantity INT NOT NULL, 
+AcquireDate DATE NOT NULL
+)
+
+/* person */
+CREATE TABLE PersonSkill(
+PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') UNIQUE NOT NULL, 
+SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') UNIQUE NOT NULL,
+SkillProficiency INT NOT NULL
+)
+/* occupation */
+CREATE TABLE PeopleOccupation(
+PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
+OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL
+)
