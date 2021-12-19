@@ -242,3 +242,36 @@ CONSTRAINT PK_PeopleOccupation PRIMARY KEY(PersonID,OccupationID),
 CONSTRAINT FK_People1 FOREIGN KEY (PersonID) REFERENCES People(PersonID),
 CONSTRAINT FK_Occupation FOREIGN KEY (OccupationID) REFERENCES Skills(SkillID)
 );
+
+/*ChallengeLevel Table*/
+CREATE TABLE ChallengeLevel(
+	ChallengeLevelID VARCHAR(8) CHECK(ChallengeLevelID LIKE 'CL%') NOT NULL Primary KEY,
+	Description VARCHAR(30) NOT NULL,
+	ChanceOfDeath VARCHAR(30) NOT NULL,
+	NeedsGroupToKill VARCHAR(20) NOT NULL
+);
+GO
+
+/*EnemyType Table*/
+CREATE TABLE EnemyType(
+	EnTypeID VARCHAR(8) CHECK(EnTypeID LIKE 'N%') NOT NULL Primary KEY,
+	Designation CHAR(30) NOT NULL,
+	Challange VARCHAR(8) NOT NULL,
+	Bounty INT NOT NULL,
+	CurrencyID VARCHAR(8) NOT NULL,
+	FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID),
+	FOREIGN KEY (ChallengeLevelID) REFERENCES Challenge_Level(ChallengeLevelID) 
+);
+GO
+
+/*Enemies Table*/
+CREATE TABLE Enemies(
+	EnemyID VARCHAR(8) CHECK(EnTypeID LIKE 'E%') NOT NULL Primary KEY,
+	SpeficLandmarkKey VARCHAR(8) NOT NULL,
+	Alive INT NOT NULL,
+	Name Char(30) NULL,
+	EnTypeID VARCHAR(8) NOT NULL,
+	FOREIGN KEY (SpecificLandmarkKey) REFERENCES RegionLandmarks(SpecificLandmarkKey),
+	FOREIGN KEY (EnTypeID) REFERENCES EnemyType(EnTypeID)
+);
+GO
