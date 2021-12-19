@@ -59,11 +59,11 @@ CONSTRAINT PK_Landmarks PRIMARY KEY (LandmarkID)
 );
 
 CREATE TABLE RegionLandmarks(
-SpecificLandmarkKey VARCHAR(8) CHECK(SpecificLandmarkKey LIKE 'SL%') NOT NULL UNIQUE,
+SpecificLandmarkID VARCHAR(8) CHECK(SpecificLandmarkID LIKE 'SL%') NOT NULL UNIQUE,
 LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
 RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
 LandmarkName VARCHAR(20) NOT NULL,
-CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkKey),
+CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkID),
 CONSTRAINT FK_RegionLandmarks1 FOREIGN KEY(LandmarkID) REFERENCES Landmarks(LandmarkID),
 CONSTRAINT FK_RegionLandmarks2 FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
 );
@@ -83,16 +83,6 @@ CREATE TABLE FoodType (
     FoodType_Description CHAR(100) NOT NULL
 );
 
-CREATE TABLE AvailiableRoutes(
-    RouteID VARCHAR(8) CHECK (RouteID LIKE 'RO%') UNIQUE NOT NULL,
-    SettlementSource CHAR(30) NOT NULL,
-    SettlementDestination CHAR(30) NOT NULL,
-    PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL,
-    CONSTRAINT AvailiableRoutesFKPublicTransportation FOREIGN KEY(PublicTransportationID) REFERENCES PublicTransportation(PublicTransportationID),
-    CONSTRAINT AvailiableRoutesFKSettlementSource FOREIGN KEY (SettlementSource) REFERENCES Settlements(SettlementSource),
-    CONSTRAINT AvailiableRoutesFKSettlementDestination FOREIGN KEY (SettlementDestination) REFERENCES Settlements(SettlementDestination)
-);
-
 /* Occupation Table */
 
 CREATE TABLE Occupation(
@@ -107,8 +97,8 @@ FirstName VARCHAR(30) NOT NULL,
 LastName VARCHAR(30) NOT NULL,
 MiddleInitial VARCHAR(1) NULL,
 Gender BIT NOT NULL,
-Alive BIT DEFAULT 0 NOT NULL 
-SettlementID Varchar(8) NOTNUll,
+Alive BIT DEFAULT 0 NOT NULL , 
+SettlementID Varchar(8) NOT NUll,
 Primary Key(PersonID),
 Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
 );
@@ -261,7 +251,6 @@ CREATE TABLE ChallengeLevel(
 	ChanceOfDeath VARCHAR(30) NOT NULL,
 	NeedsGroupToKill VARCHAR(20) NOT NULL
 );
-GO
 
 /*EnemyType Table*/
 CREATE TABLE EnemyType(
@@ -271,18 +260,16 @@ CREATE TABLE EnemyType(
 	Bounty INT NOT NULL,
 	CurrencyID VARCHAR(8) NOT NULL,
 	FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID),
-	FOREIGN KEY (ChallengeLevelID) REFERENCES Challenge_Level(ChallengeLevelID) 
+	FOREIGN KEY (ChallengeLevelID) REFERENCES ChallengeLevel(ChallengeLevelID) 
 );
-GO
 
 /*Enemies Table*/
 CREATE TABLE Enemies(
-	EnemyID VARCHAR(8) CHECK(EnTypeID LIKE 'E%') NOT NULL Primary KEY,
-	SpeficLandmarkKey VARCHAR(8) NOT NULL,
+	EnemyID VARCHAR(8) CHECK(EnemyID LIKE 'E%') NOT NULL Primary KEY,
+	SpecificLandmarkID VARCHAR(8) NOT NULL,
 	Alive INT NOT NULL,
 	Name Char(30) NULL,
 	EnTypeID VARCHAR(8) NOT NULL,
-	FOREIGN KEY (SpecificLandmarkKey) REFERENCES RegionLandmarks(SpecificLandmarkKey),
+	FOREIGN KEY (SpecificLandmarkID) REFERENCES RegionLandmarks(SpecificLandmarkID),
 	FOREIGN KEY (EnTypeID) REFERENCES EnemyType(EnTypeID)
 );
-GO
