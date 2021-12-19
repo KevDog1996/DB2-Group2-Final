@@ -168,14 +168,21 @@ Quantity INT NOT NULL,
 AcquireDate DATE NOT NULL
 )
 
-/* person */
-CREATE TABLE PersonSkill(
-PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') UNIQUE NOT NULL, 
-SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') UNIQUE NOT NULL,
-SkillProficiency INT NOT NULL
-)
-/* occupation */
+/*PeopleSkills table */
+CREATE TABLE PeopleSkills(
+PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
+SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL,
+SkillProficiency INT NOT NULL,
+CONSTRAINT PK_PeopleSkills PRIMARY KEY(PersonID,SkillId),
+CONSTRAINT FK_People FOREIGN KEY (PersonID) REFERENCES People(PersonID),
+CONSTRAINT FK_Skills FOREIGN KEY (SkillID) REFERENCES Skills(SkillID)
+);
+
+/*PeopleOccupation table */
 CREATE TABLE PeopleOccupation(
 PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
-OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL
-)
+OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL,
+CONSTRAINT PK_PeopleOccupation PRIMARY KEY(PersonID,OccupationID),
+CONSTRAINT FK_People1 FOREIGN KEY (PersonID) REFERENCES People(PersonID),
+CONSTRAINT FK_Occupation FOREIGN KEY (OccupationID) REFERENCES Skills(SkillID)
+);
