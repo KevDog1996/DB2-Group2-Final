@@ -48,11 +48,11 @@ CONSTRAINT PK_Landmarks PRIMARY KEY (LandmarkID)
 );
 
 CREATE TABLE RegionLandmarks(
-SpecificLandmarkKey VARCHAR(8) CHECK(SpecificLandmarkKey LIKE 'SL%') NOT NULL UNIQUE,
+SpecificLandmarkID VARCHAR(8) CHECK(SpecificLandmarkID LIKE 'SL%') NOT NULL UNIQUE,
 LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
 RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
 LandmarkName VARCHAR(20) NOT NULL,
-CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkKey),
+CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkID),
 CONSTRAINT FK_RegionLandmarks1 FOREIGN KEY(LandmarkID) REFERENCES Landmarks(LandmarkID),
 CONSTRAINT FK_RegionLandmarks2 FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
 );
@@ -86,8 +86,8 @@ FirstName VARCHAR(30) NOT NULL,
 LastName VARCHAR(30) NOT NULL,
 MiddleInitial VARCHAR(1) NULL,
 Gender BIT NOT NULL,
-Alive BIT DEFAULT 0 NOT NULL 
-SettlementID Varchar(8) NOTNUll,
+Alive BIT DEFAULT 0 NOT NULL , 
+SettlementID Varchar(8) NOT NUll,
 Primary Key(PersonID),
 Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
 );
@@ -231,4 +231,34 @@ OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL,
 CONSTRAINT PK_PeopleOccupation PRIMARY KEY(PersonID,OccupationID),
 CONSTRAINT FK_People1 FOREIGN KEY (PersonID) REFERENCES People(PersonID),
 CONSTRAINT FK_Occupation FOREIGN KEY (OccupationID) REFERENCES Skills(SkillID)
+);
+
+/*ChallengeLevel Table*/
+CREATE TABLE ChallengeLevel(
+	ChallengeLevelID VARCHAR(8) CHECK(ChallengeLevelID LIKE 'CL%') NOT NULL Primary KEY,
+	Description VARCHAR(30) NOT NULL,
+	ChanceOfDeath VARCHAR(30) NOT NULL,
+	NeedsGroupToKill VARCHAR(20) NOT NULL
+);
+
+/*EnemyType Table*/
+CREATE TABLE EnemyType(
+	EnTypeID VARCHAR(8) CHECK(EnTypeID LIKE 'N%') NOT NULL Primary KEY,
+	Designation CHAR(30) NOT NULL,
+	Challange VARCHAR(8) NOT NULL,
+	Bounty INT NOT NULL,
+	CurrencyID VARCHAR(8) NOT NULL,
+	FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID),
+	FOREIGN KEY (ChallengeLevelID) REFERENCES ChallengeLevel(ChallengeLevelID) 
+);
+
+/*Enemies Table*/
+CREATE TABLE Enemies(
+	EnemyID VARCHAR(8) CHECK(EnemyID LIKE 'E%') NOT NULL Primary KEY,
+	SpecificLandmarkID VARCHAR(8) NOT NULL,
+	Alive INT NOT NULL,
+	Name Char(30) NULL,
+	EnTypeID VARCHAR(8) NOT NULL,
+	FOREIGN KEY (SpecificLandmarkID) REFERENCES RegionLandmarks(SpecificLandmarkID),
+	FOREIGN KEY (EnTypeID) REFERENCES EnemyType(EnTypeID)
 );
