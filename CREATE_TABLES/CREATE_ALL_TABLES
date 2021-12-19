@@ -20,6 +20,17 @@ PublicTransportationType CHAR(50) NOT NULL,
 CONSTRAINT PK_PublicTransportation PRIMARY KEY (PublicTransportationID)
 );
 
+/*Business table */
+CREATE TABLE Business(
+    BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%') NOT NULL UNIQUE,
+    BusinessName CHAR(50) NOT NULL,
+    BusinessType CHAR(100) NOT NULL,
+    PersonID VARCHAR(8) CHECK(BusinessID LIKE 'P%') NOT NULL,
+    CONSTRAINT PK_BusinessID PRIMARY KEY (BusinessID),
+    CONSTRAINT BusinessFKPersonID FOREIGN KEY (PersonID) REFERENCES People(PersonID)
+);
+
+
 CREATE TABLE Skills(
 SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL UNIQUE,
 Skill CHAR(30) NOT NULL,
