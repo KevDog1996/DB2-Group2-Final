@@ -72,6 +72,16 @@ CREATE TABLE FoodType (
     FoodType_Description CHAR(100) NOT NULL
 );
 
+CREATE TABLE AvailiableRoutes(
+    RouteID VARCHAR(8) CHECK (RouteID LIKE 'RO%') UNIQUE NOT NULL,
+    SettlementSource CHAR(30) NOT NULL,
+    SettlementDestination CHAR(30) NOT NULL,
+    PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL,
+    CONSTRAINT AvailiableRoutesFKPublicTransportation FOREIGN KEY(PublicTransportationID) REFERENCES PublicTransportation(PublicTransportationID),
+    CONSTRAINT AvailiableRoutesFKSettlementSource FOREIGN KEY (SettlementSource) REFERENCES Settlements(SettlementSource),
+    CONSTRAINT AvailiableRoutesFKSettlementDestination FOREIGN KEY (SettlementDestination) REFERENCES Settlements(SettlementDestination)
+);
+
 /* Occupation Table */
 
 CREATE TABLE Occupation(
