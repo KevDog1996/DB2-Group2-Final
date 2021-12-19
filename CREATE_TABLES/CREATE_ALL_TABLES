@@ -53,8 +53,8 @@ LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
 RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
 LandmarkName VARCHAR(20) NOT NULL,
 CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkKey),
-CONSTRAINT FK_RegionLandmarks FOREIGN KEY(LandmarkID) REFERENCES Landmarks(LandmarkID),
-CONSTRAINT FK_RegionLandmarks FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
+CONSTRAINT FK_RegionLandmarks1 FOREIGN KEY(LandmarkID) REFERENCES Landmarks(LandmarkID),
+CONSTRAINT FK_RegionLandmarks2 FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
 );
 
 CREATE TABLE Food (
