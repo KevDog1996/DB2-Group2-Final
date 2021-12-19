@@ -80,7 +80,7 @@ CONSTRAINT PK_Occupation PRIMARY KEY (OccupationID)
 );
 
 CREATE TABLE People(
-PersonID VARCHAR(8) CHECK(PersonId LIKE '0%' NOT NULL UNIQUE,
+PersonID VARCHAR(8) CHECK(PersonId LIKE '0%') NOT NULL UNIQUE,
 FirstName VARCHAR(30) NOT NULL,
 LastName VARCHAR(30) NOT NULL,
 MiddleInitial VARCHAR(1) NULL,
@@ -88,7 +88,7 @@ Gender BIT NOT NULL,
 Alive BIT DEFAULT 0 NOT NULL 
 SettlementID Varchar(8) NOTNUll,
 Primary Key(PersonID),
-Foreign Key(SettlementID) Refrences Settlements(SettlementID)
+Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
 );
 
 /*Items Table */
