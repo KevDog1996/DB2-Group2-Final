@@ -37,7 +37,8 @@ RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL UNIQUE,
 RegionName CHAR(50) NOT NULL UNIQUE,
 Climate CHAR(50) NOT NULL,
 Capital CHAR(30) CHECK(Capital LIKE 'S%') NOT NULL UNIQUE,
-CONSTRAINT PK_Regions PRIMARY KEY (RegionID)
+CONSTRAINT PK_Regions PRIMARY KEY (RegionID),
+CONSTRAINT FK_Regions FOREIGN KEY(Capital) REFERENCES Settlements(SettlementID)
 );
 
 Create TABLE Landmarks(
@@ -51,7 +52,9 @@ SpecificLandmarkKey VARCHAR(8) CHECK(SpecificLandmarkKey LIKE 'SL%') NOT NULL UN
 LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
 RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
 LandmarkName VARCHAR(20) NOT NULL,
-CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkKey)
+CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkKey),
+CONSTRAINT FK_RegionLandmarks FOREIGN KEY(LandmarkID) REFERENCES Landmarks(LandmarkID),
+CONSTRAINT FK_RegionLandmarks FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
 );
 
 CREATE TABLE Food (
