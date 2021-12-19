@@ -90,6 +90,15 @@ SettlementID Varchar(8) NOTNUll,
 Primary Key(PersonID),
 Foreign Key(SettlementID) Refrences Settlements(SettlementID)
 );
+
+/*Items Table */
+
+CREATE TABLE Items(
+ItemID VARCHAR(8) CHECK(ItemID LIKE 'I') NOT NULL UNIQUE,
+ItemName CHAR(50) NOT NULL,
+CONSTRAINT PK_Items PRIMARY KEY (ItemID)
+);
+
 /* item */
 CREATE TABLE PersonItemInventory (
 PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') UNIQUE NOT NULL,
