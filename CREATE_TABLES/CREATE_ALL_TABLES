@@ -6,6 +6,7 @@ GO
 USE Group2DoomsDay;
 GO
 
+/*Weapons Table*/
 CREATE TABLE Weapons(
 WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL UNIQUE,
 WeaponName CHAR(50) NOT NULL,
@@ -14,6 +15,7 @@ Range INT NOT NULL,
 CONSTRAINT PK_WeaponS PRIMARY KEY (WeaponID)
 );
 
+/*PublicTransportation Table*/
 CREATE TABLE PublicTransportation(
 PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL UNIQUE,
 PublicTransportationType CHAR(50) NOT NULL,
@@ -30,19 +32,21 @@ CREATE TABLE Business(
     CONSTRAINT BusinessFKPersonID FOREIGN KEY (PersonID) REFERENCES People(PersonID)
 );
 
-
+/*Skills Table*/
 CREATE TABLE Skills(
 SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL UNIQUE,
 Skill CHAR(30) NOT NULL,
 CONSTRAINT PK_Skills PRIMARY KEY (SkillID)
 );
 
+/*Currency Table*/
 CREATE TABLE Currency(
 CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') NOT NULL UNIQUE,
 CurrencyType CHAR(30) NOT NULL,
 CONSTRAINT PK_Currency PRIMARY KEY (CurrencyID)
 );
 
+/*Regions Table*/
 CREATE TABLE Regions(
 RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL UNIQUE,
 RegionName CHAR(50) NOT NULL UNIQUE,
@@ -52,12 +56,14 @@ CONSTRAINT PK_Regions PRIMARY KEY (RegionID),
 CONSTRAINT FK_Regions FOREIGN KEY(Capital) REFERENCES Settlements(SettlementID)
 );
 
+/*Landmarks Table*/
 Create TABLE Landmarks(
 LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL UNIQUE,
 LandmarkType VARCHAR(100) NOT NULL,
 CONSTRAINT PK_Landmarks PRIMARY KEY (LandmarkID)
 );
 
+/*RegionLandmarks Table*/
 CREATE TABLE RegionLandmarks(
 SpecificLandmarkID VARCHAR(8) CHECK(SpecificLandmarkID LIKE 'SL%') NOT NULL UNIQUE,
 LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
@@ -68,19 +74,23 @@ CONSTRAINT FK_RegionLandmarks1 FOREIGN KEY(LandmarkID) REFERENCES Landmarks(Land
 CONSTRAINT FK_RegionLandmarks2 FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
 );
 
+/*Food Table*/
 CREATE TABLE Food (
     FoodID VARCHAR(8) CHECK (FoodID LIKE 'F%') UNIQUE NOT NULL,
     FoodTypeID VARCHAR(8) CHECK(FoodTypeID LIKE 'FT%') NOT NULL,
     FoodName VARCHAR(100) NOT NULL,
     FoodDescription VARCHAR(200)NOT NULL,
     FoodGoodByrange INT,
+    CONSTRAINT PK_Food PRIMARY KEY (FoodID),
     CONSTRAINT FK_FoodTypeID FOREIGN KEY(FoodtypeID) REFERENCES FoodType(FoodTypeID)
 );
 
+/*FoodType Table*/
 CREATE TABLE FoodType (
     FoodTypeID VARCHAR(8) NOT NULL UNIQUE,
     FoodType VARCHAR(50) NOT NULL,
-    FoodTypeDescription CHAR(100) NOT NULL
+    FoodTypeDescription CHAR(100) NOT NULL,
+    CONSTRAINT PK_FoodType PRIMARY KEY (FoodTypeID)
 );
 
 /* Occupation Table */
@@ -91,6 +101,7 @@ OccupationDescription CHAR(100) NOT NULL,
 CONSTRAINT PK_Occupation PRIMARY KEY (OccupationID)
 );
 
+/*People Table*/
 CREATE TABLE People(
 PersonID VARCHAR(8) CHECK(PersonId LIKE '0%') NOT NULL UNIQUE,
 FirstName VARCHAR(30) NOT NULL,
@@ -272,4 +283,16 @@ CREATE TABLE Enemies(
 	EnTypeID VARCHAR(8) NOT NULL,
 	FOREIGN KEY (SpecificLandmarkID) REFERENCES RegionLandmarks(SpecificLandmarkID),
 	FOREIGN KEY (EnTypeID) REFERENCES EnemyType(EnTypeID)
+);
+
+/*AvailableRoutes Table*/
+CREATE TABLE AvailableRoutes(
+	RouteID VARCHAR(8) CHECK(RouteID LIKE 'RO%') NOT NULL UNIQUE,
+	SettlementSource VARCHAR(8) CHECK(SettlementSource LIKE 'S%') NOT NULL,
+	SettlementDestination VARCHAR(8) CHECK(SettlementDestination LIKE 'S%') NOT NULL,
+	PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL,
+	CONSTRAINT PK_AvailableRoutes PRIMARY KEY (RouteID),
+	CONSTRAINT FK_AvailableRoutes1 FOREIGN KEY (SettlementSource) REFERENCES Settlements(SettlementID),
+	CONSTRAINT FK_AvailableRoutes2 FOREIGN KEY (SettlementDestination) REFERENCES Settlements(SettlementID),
+	CONSTRAINT FK_AvailableRoutes3 FOREIGN KEY (PublicTransportationID) REFERENCES PublicTransportation(PublicTransportationID)
 );
