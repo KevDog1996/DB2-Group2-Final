@@ -80,7 +80,7 @@ CREATE TABLE Food (
 CREATE TABLE FoodType (
     FoodTypeID VARCHAR(8) NOT NULL UNIQUE,
     FoodType VARCHAR(50) NOT NULL,
-    FoodType_Description CHAR(100) NOT NULL
+    FoodTypeDescription CHAR(100) NOT NULL
 );
 
 /* Occupation Table */
