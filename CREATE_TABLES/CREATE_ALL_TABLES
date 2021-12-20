@@ -99,7 +99,7 @@ MiddleInitial VARCHAR(1) NULL,
 Gender BIT NOT NULL,
 Alive BIT DEFAULT 0 NOT NULL , 
 SettlementID Varchar(8) NOT NUll,
-Primary Key(PersonID),
+CONSTRAINT PK_People PRIMARY KEY (PersonID),
 Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
 );
 
