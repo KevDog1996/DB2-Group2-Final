@@ -11011,7 +11011,7 @@ Insert into AvailableRoutes(RouteID,SettlementSource,SettlementDestination,Publi
 		('RT0108','S00040','S00043','PT000001');
 
 --------RegionLandmarks
-INSERT INTO RegionLandmarks(SpecificLandmarkKey, RegionID, LandmarkID, LandmarkName)
+INSERT INTO RegionLandmarks(SpecificLandmarkID, RegionID, LandmarkID, LandmarkName)
 	VALUES
 		('SL00000', 'R00000', 'L00000', 'Mississippi River'),
 		('SL00001', 'R00000', 'L00000', 'Red River'),
