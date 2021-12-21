@@ -92,6 +92,8 @@ Begin
 
 End
 
+Go
+
 CREATE TRIGGER deadInsteadOfDelete ON People
 INSTEAD OF DELETE
 AS
@@ -112,6 +114,8 @@ BEGIN
 			DELETE FROM People WHERE PersonID = (Select PersonID FROM deleted)
 		END
 END
+
+GO
 
 CREATE TRIGGER zeroQtyFoodInsteadOfDelete ON SettlementsFoodInventory
 INSTEAD OF DELETE
@@ -136,6 +140,8 @@ BEGIN
         END
 END
 
+GO
+
 CREATE TRIGGER zeroQtyWpnInsteadOfDelete ON SettlementsWeaponInventory
 INSTEAD OF DELETE
 AS
@@ -159,6 +165,8 @@ BEGIN
         END
 END
 
+GO
+
 CREATE TRIGGER zeroQtyCurInsteadOfDelete ON SettlementCurrencyInventory
 INSTEAD OF DELETE
 AS
@@ -181,3 +189,5 @@ BEGIN
             DELETE FROM SettlementCurrencyInventory WHERE CurrencyID = (SELECT CurrencyID FROM deleted)
         END
 END
+
+GO
