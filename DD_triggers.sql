@@ -112,3 +112,49 @@ BEGIN
 			DELETE FROM People WHERE PersonID = (Select PersonID FROM deleted)
 		END
 END
+
+CREATE TRIGGER zeroQtyFoodInsteadOfDelete ON SettlementsFoodInventory
+INSTEAD OF DELETE
+AS
+BEGIN
+    DECLARE @FoodID varchar(8);
+    SET @FoodID = (SELECT FoodID FROM deleted i);
+    DECLARE @SettlementID varchar(8);
+    SET @SettlementID = (SELECT SettlementID FROM deleted i);
+    IF (SELECT FoodID FROM deleted) = @FoodID
+        BEGIN
+            RAISERROR('Cannot Delete Food',16,1);
+            ROLLBACK;
+            UPDATE SettlementsFoodInventory
+                SET Quantity = 0
+            WHERE
+                FoodID = @FoodID AND SettlementID = @SettlementID
+        END
+    ELSE
+        BEGIN
+            DELETE FROM SettlementsFoodInventory WHERE FoodID = (SELECT FoodID FROM deleted)
+        END
+END
+
+CREATE TRIGGER zeroQtyWpnInsteadOfDelete ON SettlementsWeaponInventory
+INSTEAD OF DELETE
+AS
+BEGIN
+    DECLARE @WpnID varchar(8);
+    SET @WpnID = (SELECT WeaponID FROM deleted i);
+    DECLARE @SettlementID varchar(8);
+    SET @SettlementID = (SELECT SettlementID FROM deleted i);
+    IF (SELECT WeaponID FROM deleted) = @WpnID
+        BEGIN
+            RAISERROR('Cannot Delete Weapon',16,1);
+            ROLLBACK;
+            UPDATE SettlementsWeaponInventory
+                SET Quantity = 0
+            WHERE
+                WeaponID = @WpnID AND SettlementID = @SettlementID
+        END
+    ELSE
+        BEGIN
+            DELETE FROM SettlementsWeaponInventory WHERE WeaponID = (SELECT WeaponID FROM deleted)
+        END
+END
