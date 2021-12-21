@@ -287,7 +287,7 @@ CREATE TABLE Enemies(
 
 /*AvailableRoutes Table*/
 CREATE TABLE AvailableRoutes(
-	RouteID VARCHAR(8) CHECK(RouteID LIKE 'RO%') NOT NULL UNIQUE,
+	RouteID VARCHAR(8) CHECK(RouteID LIKE 'RT%') NOT NULL UNIQUE,
 	SettlementSource VARCHAR(8) CHECK(SettlementSource LIKE 'S%') NOT NULL,
 	SettlementDestination VARCHAR(8) CHECK(SettlementDestination LIKE 'S%') NOT NULL,
 	PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL,

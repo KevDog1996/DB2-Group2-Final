@@ -10898,7 +10898,7 @@ INSERT INTO Landmarks(LandmarkID, LandmarkType)
 		('L00009', 'Bridge'),
 		('L00010', 'Park');
 		
-Insert into AvailiableRoutes(RouteID,SettlementSourse,SettlementDestination,PubTransID)
+Insert into AvailableRoutes(RouteID,SettlementSource,SettlementDestination,PublicTransportationID)
  	 Values
 		('RT0000','S00000','S00002','PT000002'),
 		('RT0001','S00000','S00008','PT000001'),
