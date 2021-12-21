@@ -158,3 +158,26 @@ BEGIN
             DELETE FROM SettlementsWeaponInventory WHERE WeaponID = (SELECT WeaponID FROM deleted)
         END
 END
+
+CREATE TRIGGER zeroQtyCurInsteadOfDelete ON SettlementCurrencyInventory
+INSTEAD OF DELETE
+AS
+BEGIN
+    DECLARE @CurID varchar(8);
+    SET @CurID = (SELECT CurrencyID FROM deleted i);
+    DECLARE @SettlementID varchar(8);
+    SET @SettlementID = (SELECT SettlementID FROM deleted i);
+    IF (SELECT CurrencyID FROM deleted) = @CurID
+        BEGIN
+            RAISERROR('Cannot Delete Currency',16,1);
+            ROLLBACK;
+            UPDATE SettlementCurrencyInventory
+                SET Quantity = 0
+            WHERE
+                CurrencyID = @CurID AND SettlementID = @SettlementID
+        END
+    ELSE
+        BEGIN
+            DELETE FROM SettlementCurrencyInventory WHERE CurrencyID = (SELECT CurrencyID FROM deleted)
+        END
+END
