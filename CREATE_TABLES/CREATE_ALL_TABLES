@@ -8,18 +8,18 @@ GO
 
 /*Weapons Table*/
 CREATE TABLE Weapons(
-WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL UNIQUE,
-WeaponName CHAR(50) NOT NULL,
-PowerLevel INT NOT NULL,
-Range INT NOT NULL,
-CONSTRAINT PK_WeaponS PRIMARY KEY (WeaponID)
+	WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL UNIQUE,
+	WeaponName CHAR(50) NOT NULL,
+	PowerLevel INT NOT NULL,
+	Range INT NOT NULL,
+	CONSTRAINT PK_WeaponS PRIMARY KEY (WeaponID)
 );
 
 /*PublicTransportation Table*/
 CREATE TABLE PublicTransportation(
-PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL UNIQUE,
-PublicTransportationType CHAR(50) NOT NULL,
-CONSTRAINT PK_PublicTransportation PRIMARY KEY (PublicTransportationID)
+	PublicTransportationID VARCHAR(8) CHECK(PublicTransportationID LIKE 'PT%') NOT NULL UNIQUE,
+	PublicTransportationType CHAR(50) NOT NULL,
+	CONSTRAINT PK_PublicTransportation PRIMARY KEY (PublicTransportationID)
 );
 
 /*Business table */
@@ -34,44 +34,44 @@ CREATE TABLE Business(
 
 /*Skills Table*/
 CREATE TABLE Skills(
-SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL UNIQUE,
-Skill CHAR(30) NOT NULL,
-CONSTRAINT PK_Skills PRIMARY KEY (SkillID)
+	SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL UNIQUE,
+	Skill CHAR(30) NOT NULL,
+	CONSTRAINT PK_Skills PRIMARY KEY (SkillID)
 );
 
 /*Currency Table*/
 CREATE TABLE Currency(
-CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') NOT NULL UNIQUE,
-CurrencyType CHAR(30) NOT NULL,
-CONSTRAINT PK_Currency PRIMARY KEY (CurrencyID)
+	CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%') NOT NULL UNIQUE,
+	CurrencyType CHAR(30) NOT NULL,
+	CONSTRAINT PK_Currency PRIMARY KEY (CurrencyID)
 );
 
 /*Regions Table*/
 CREATE TABLE Regions(
-RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL UNIQUE,
-RegionName CHAR(50) NOT NULL UNIQUE,
-Climate CHAR(50) NOT NULL,
-Capital CHAR(30) CHECK(Capital LIKE 'S%') NOT NULL UNIQUE,
-CONSTRAINT PK_Regions PRIMARY KEY (RegionID),
-CONSTRAINT FK_Regions FOREIGN KEY(Capital) REFERENCES Settlements(SettlementID)
+	RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL UNIQUE,
+	RegionName CHAR(50) NOT NULL UNIQUE,
+	Climate CHAR(50) NOT NULL,
+	Capital CHAR(30) CHECK(Capital LIKE 'S%') NOT NULL UNIQUE,
+	CONSTRAINT PK_Regions PRIMARY KEY (RegionID),
+	CONSTRAINT FK_Regions FOREIGN KEY(Capital) REFERENCES Settlements(SettlementID)
 );
 
 /*Landmarks Table*/
 Create TABLE Landmarks(
-LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL UNIQUE,
-LandmarkType VARCHAR(100) NOT NULL,
-CONSTRAINT PK_Landmarks PRIMARY KEY (LandmarkID)
+	LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL UNIQUE,
+	LandmarkType VARCHAR(100) NOT NULL,
+	CONSTRAINT PK_Landmarks PRIMARY KEY (LandmarkID)
 );
 
 /*RegionLandmarks Table*/
 CREATE TABLE RegionLandmarks(
-SpecificLandmarkID VARCHAR(8) CHECK(SpecificLandmarkID LIKE 'SL%') NOT NULL UNIQUE,
-LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
-RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
-LandmarkName VARCHAR(20) NOT NULL,
-CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkID),
-CONSTRAINT FK_RegionLandmarks1 FOREIGN KEY(LandmarkID) REFERENCES Landmarks(LandmarkID),
-CONSTRAINT FK_RegionLandmarks2 FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
+	SpecificLandmarkID VARCHAR(8) CHECK(SpecificLandmarkID LIKE 'SL%') NOT NULL UNIQUE,
+	RegionID VARCHAR(8) CHECK(RegionID LIKE 'R%') NOT NULL,
+	LandmarkID VARCHAR(8) CHECK(LandmarkID LIKE 'L%') NOT NULL,
+	LandmarkName VARCHAR(20) NOT NULL,
+	CONSTRAINT PK_RegionLandmarks PRIMARY KEY (SpecificLandmarkID),
+	CONSTRAINT FK_RegionLandmarks1 FOREIGN KEY(LandmarkID) REFERENCES Landmarks(LandmarkID),
+	CONSTRAINT FK_RegionLandmarks2 FOREIGN KEY(RegionID) REFERENCES Regions(RegionID)
 );
 
 /*Food Table*/
@@ -96,193 +96,196 @@ CREATE TABLE FoodType (
 /* Occupation Table */
 
 CREATE TABLE Occupation(
-OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL UNIQUE,
-OccupationDescription CHAR(100) NOT NULL,
-CONSTRAINT PK_Occupation PRIMARY KEY (OccupationID)
+	OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL UNIQUE,
+	OccupationDescription CHAR(100) NOT NULL,
+	CONSTRAINT PK_Occupation PRIMARY KEY (OccupationID)
 );
 
 /*People Table*/
 CREATE TABLE People(
-PersonID VARCHAR(8) CHECK(PersonId LIKE '0%') NOT NULL UNIQUE,
-FirstName VARCHAR(30) NOT NULL,
-LastName VARCHAR(30) NOT NULL,
-MiddleInitial VARCHAR(1) NULL,
-Gender BIT NOT NULL,
-Alive BIT DEFAULT 0 NOT NULL , 
-SettlementID Varchar(8) NOT NUll,
-CONSTRAINT PK_People PRIMARY KEY (PersonID),
-Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
+	PersonID VARCHAR(8) CHECK(PersonId LIKE '0%') NOT NULL UNIQUE,
+	FirstName VARCHAR(30) NOT NULL,
+	LastName VARCHAR(30) NOT NULL,
+	MiddleInitial VARCHAR(1) NULL,
+	Gender BIT NOT NULL,
+	Alive BIT DEFAULT 0 NOT NULL , 
+	SettlementID Varchar(8) NOT NUll,
+	CONSTRAINT PK_People PRIMARY KEY (PersonID),
+	Foreign Key(SettlementID) REFERENCES Settlements(SettlementID)
 );
 
 /*Items Table */
 
 CREATE TABLE Items(
-ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%') NOT NULL UNIQUE,
-ItemName CHAR(50) NOT NULL,
-CONSTRAINT PK_ItemsID PRIMARY KEY (ItemID)
+	ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%') NOT NULL UNIQUE,
+	ItemName CHAR(50) NOT NULL,
+	CONSTRAINT PK_ItemsID PRIMARY KEY (ItemID)
 );
 
 /* item */
 CREATE TABLE PersonItemInventory (
-PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL,
-Quantity INT NOT NULL,
-ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%')  NOT NULL,
-CONSTRAINT PK_PersonItemInventory PRIMARY KEY (PersonID, ItemID),
-CONSTRAINT FK_PersonID2 FOREIGN KEY (PersonID) REFERENCES People(PersonID),
-CONSTRAINT FK_ItemID2 FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
+	PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL,
+	Quantity INT NOT NULL,
+	ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%')  NOT NULL,
+	CONSTRAINT PK_PersonItemInventory PRIMARY KEY (PersonID, ItemID),
+	CONSTRAINT FK_PersonID2 FOREIGN KEY (PersonID) REFERENCES People(PersonID),
+	CONSTRAINT FK_ItemID2 FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
 );
 
 CREATE TABLE BusinessItemInventory (
-BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL,
-Quantity INT NOT NULL,
-ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%')  NOT NULL,
-CONSTRAINT PK_BusinessItemInventory PRIMARY KEY (BusinessID, ItemID),
-CONSTRAINT FK_BusinessID3 FOREIGN KEY (BusinessID) REFERENCES People(PersonID),
-CONSTRAINT FK_ItemID3 FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
+	BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL,
+	Quantity INT NOT NULL,
+	ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%')  NOT NULL,
+	CONSTRAINT PK_BusinessItemInventory PRIMARY KEY (BusinessID, ItemID),
+	CONSTRAINT FK_BusinessID3 FOREIGN KEY (BusinessID) REFERENCES People(PersonID),
+	CONSTRAINT FK_ItemID3 FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
 );
 
 CREATE TABLE SettlementsItemInventory (
-SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')   NOT NULL,
-Quantity INT NOT NULL,
-ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%')  NOT NULL,
-CONSTRAINT PK_SettlementsItemInventory PRIMARY KEY (SettlementID, ItemID),
-CONSTRAINT FK_PersonID3 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID),
-CONSTRAINT FK_ItemID4 FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
+	SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%') NOT NULL,
+	Quantity INT NOT NULL,
+	ItemID VARCHAR(8) CHECK(ItemID LIKE 'I%')  NOT NULL,
+	CONSTRAINT PK_SettlementsItemInventory PRIMARY KEY (SettlementID, ItemID),
+	CONSTRAINT FK_PersonID3 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID),
+	CONSTRAINT FK_ItemID4 FOREIGN KEY (ItemID) REFERENCES Items(ItemID)
 );
 
 /* currency */
 CREATE TABLE PersonCurrencyInventory (
-PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL, 
-Quantity INT, 
-CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%')  NOT NULL,
-CONSTRAINT PK_PersonCurrencyInventory PRIMARY KEY (PersonID, CurrencyID),
-CONSTRAINT FK_PersonID4 FOREIGN KEY (PersonID) REFERENCES Person(PersonID),
-CONSTRAINT FK_CurrencyID2 FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID)
+	PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL, 
+	Quantity INT, 
+	CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%')  NOT NULL,
+	CONSTRAINT PK_PersonCurrencyInventory PRIMARY KEY (PersonID, CurrencyID),
+	CONSTRAINT FK_PersonID4 FOREIGN KEY (PersonID) REFERENCES Person(PersonID),
+	CONSTRAINT FK_CurrencyID2 FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID)
 );
 
 CREATE TABLE BusinessCurrencyInventory (
-BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL,
-Quantity INT, 
-CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%')  NOT NULL,
-CONSTRAINT PK_BusinessCurrencyInventory PRIMARY KEY (BusinessID, CurrencyID),
-CONSTRAINT FK_BusinessID4 FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID),
-CONSTRAINT FK_CurrencyID3 FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID)
+	BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL,
+	Quantity INT, 
+	CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%')  NOT NULL,
+	CONSTRAINT PK_BusinessCurrencyInventory PRIMARY KEY (BusinessID, CurrencyID),
+	CONSTRAINT FK_BusinessID4 FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID),
+	CONSTRAINT FK_CurrencyID3 FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID)
 );
 
 CREATE TABLE SettlementCurrencyInventory (
-SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')   NOT NULL, 
-Quantity INT, 
-CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%')  NOT NULL,
-CONSTRAINT PK_SettlementCurrencyInventory PRIMARY KEY (SettlementID, CurrencyID),
-CONSTRAINT FK_SettlementID2 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID),
-CONSTRAINT FK_CurrencyID4 FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID)
+	SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')   NOT NULL, 
+	Quantity INT, 
+	CurrencyID VARCHAR(8) CHECK(CurrencyID LIKE 'C%')  NOT NULL,
+	CONSTRAINT PK_SettlementCurrencyInventory PRIMARY KEY (SettlementID, CurrencyID),
+	CONSTRAINT FK_SettlementID2 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID),
+	CONSTRAINT FK_CurrencyID4 FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID)
 );
 
 /* weapon */
 CREATE TABLE PersonWeaponInventory(
-PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL, 
-WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
-Quantity INT NOT NULL,
-CONSTRAINT PK_PersonWeaponInventory PRIMARY KEY (PersonID, WeaponID),
-CONSTRAINT FK_WeaponID FOREIGN KEY (WeaponID) REFERENCES Weapons(WeaponID),
-CONSTRAINT FK_PersonID5 FOREIGN KEY (PersonID) REFERENCES Person(PersonID)
+	PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL, 
+	WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
+	Quantity INT NOT NULL,
+	CONSTRAINT PK_PersonWeaponInventory PRIMARY KEY (PersonID, WeaponID),
+	CONSTRAINT FK_WeaponID FOREIGN KEY (WeaponID) REFERENCES Weapons(WeaponID),
+	CONSTRAINT FK_PersonID5 FOREIGN KEY (PersonID) REFERENCES Person(PersonID)
 );
 
 CREATE TABLE BusinessWeaponInventory(
-BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL, 
-WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
-Quantity INT NOT NULL
-CONSTRAINT PK_BusinessWeaponInventory PRIMARY KEY (BusinessID, WeaponID),
-CONSTRAINT FK_WeaponID2 FOREIGN KEY (WeaponID) REFERENCES Weapons(WeaponID),
-CONSTRAINT FK_BusinessID5 FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID)
+	BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL, 
+	WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
+	Quantity INT NOT NULL
+	CONSTRAINT PK_BusinessWeaponInventory PRIMARY KEY (BusinessID, WeaponID),
+	CONSTRAINT FK_WeaponID2 FOREIGN KEY (WeaponID) REFERENCES Weapons(WeaponID),
+	CONSTRAINT FK_BusinessID5 FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID)
 );
 
 CREATE TABLE SettlementsWeaponInventory(
-SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')   NOT NULL, 
-WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
-Quantity INT NOT NULL,
-CONSTRAINT PK_SettlementsWeaponInventory PRIMARY KEY (SettlementID, WeaponID),
-CONSTRAINT FK_WeaponID2 FOREIGN KEY (WeaponID) REFERENCES Weapons(WeaponID),
-CONSTRAINT FK_SettlementID3 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID)
+	SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')   NOT NULL, 
+	WeaponID VARCHAR(8) CHECK(WeaponID LIKE 'W%') NOT NULL,
+	Quantity INT NOT NULL,
+	CONSTRAINT PK_SettlementsWeaponInventory PRIMARY KEY (SettlementID, WeaponID),
+	CONSTRAINT FK_WeaponID2 FOREIGN KEY (WeaponID) REFERENCES Weapons(WeaponID),
+	CONSTRAINT FK_SettlementID3 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID)
 );
 /* food */
 CREATE TABLE PersonFoodInventory (
-PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL, 
-FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%')  NOT NULL,
-Quantity INT NOT NULL, 
-AcquireDate DATE NOT NULL
-CONSTRAINT PK_PersonFoodInventory PRIMARY KEY (PersonID, FoodID),
-CONSTRAINT FK_PersonID6 FOREIGN KEY (PersonID) REFERENCES Person(PersonID),
-CONSTRAINT FK_FoodID FOREIGN KEY (FoodID) REFERENCES Food(FoodID)
+	PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%')  NOT NULL, 
+	FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%')  NOT NULL,
+	Quantity INT NOT NULL, 
+	AcquireDate DATE NOT NULL
+	CONSTRAINT PK_PersonFoodInventory PRIMARY KEY (PersonID, FoodID),
+	CONSTRAINT FK_PersonID6 FOREIGN KEY (PersonID) REFERENCES Person(PersonID),
+	CONSTRAINT FK_FoodID FOREIGN KEY (FoodID) REFERENCES Food(FoodID)
 );
 
 CREATE TABLE BusinessFoodInventory (
-BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL,
-FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%')  NOT NULL,
-Quantity INT NOT NULL, 
-AcquireDate DATE NOT NULL
-CONSTRAINT PK_BusinessFoodInventory PRIMARY KEY (BusinessID, FoodID),
-CONSTRAINT FK_BusinessID6 FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID),
-CONSTRAINT FK_FoodID2 FOREIGN KEY (FoodID) REFERENCES Food(FoodID)
+	BusinessID VARCHAR(8) CHECK(BusinessID LIKE 'B%')  NOT NULL,
+	FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%')  NOT NULL,
+	Quantity INT NOT NULL, 
+	AcquireDate DATE NOT NULL
+	CONSTRAINT PK_BusinessFoodInventory PRIMARY KEY (BusinessID, FoodID),
+	CONSTRAINT FK_BusinessID6 FOREIGN KEY (BusinessID) REFERENCES Business(BusinessID),
+	CONSTRAINT FK_FoodID2 FOREIGN KEY (FoodID) REFERENCES Food(FoodID)
 );
 
 CREATE TABLE SettlementsFoodInventory (
-SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')   NOT NULL, 
-FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%')  NOT NULL,
-Quantity INT NOT NULL, 
-AcquireDate DATE NOT NULL,
-CONSTRAINT PK_SettlementFoodInventory PRIMARY KEY (SettlementID, FoodID),
-CONSTRAINT FK_SettlementID4 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID),
-CONSTRAINT FK_FoodID3 FOREIGN KEY (FoodID) REFERENCES Food(FoodID)
+	SettlementID VARCHAR(8) CHECK(SettlementID LIKE 'S%')   NOT NULL, 
+	FoodID VARCHAR(8) CHECK(FoodID LIKE 'F%')  NOT NULL,
+	Quantity INT NOT NULL, 
+	AcquireDate DATE NOT NULL,
+	CONSTRAINT PK_SettlementFoodInventory PRIMARY KEY (SettlementID, FoodID),
+	CONSTRAINT FK_SettlementID4 FOREIGN KEY (SettlementID) REFERENCES Settlements(SettlementID),
+	CONSTRAINT FK_FoodID3 FOREIGN KEY (FoodID) REFERENCES Food(FoodID)
 );
 
 /*PeopleSkills table */
 CREATE TABLE PeopleSkills(
-PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
-SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL,
-SkillProficiency INT NOT NULL,
-CONSTRAINT PK_PeopleSkills PRIMARY KEY(PersonID,SkillId),
-CONSTRAINT FK_People FOREIGN KEY (PersonID) REFERENCES People(PersonID),
-CONSTRAINT FK_Skills FOREIGN KEY (SkillID) REFERENCES Skills(SkillID)
+	PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
+	SkillID VARCHAR(8) CHECK(SkillID LIKE 'K%') NOT NULL,
+	SkillProficiency INT NOT NULL,
+	CONSTRAINT PK_PeopleSkills PRIMARY KEY(PersonID,SkillId),
+	CONSTRAINT FK_People FOREIGN KEY (PersonID) REFERENCES People(PersonID),
+	CONSTRAINT FK_Skills FOREIGN KEY (SkillID) REFERENCES Skills(SkillID)
 );
 
 /*PeopleOccupation table */
 CREATE TABLE PeopleOccupation(
-PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
-OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL,
-CONSTRAINT PK_PeopleOccupation PRIMARY KEY(PersonID,OccupationID),
-CONSTRAINT FK_People1 FOREIGN KEY (PersonID) REFERENCES People(PersonID),
-CONSTRAINT FK_Occupation FOREIGN KEY (OccupationID) REFERENCES Skills(SkillID)
+	PersonID VARCHAR(8) CHECK(PersonID LIKE 'P%') NOT NULL,
+	OccupationID VARCHAR(8) CHECK(OccupationID LIKE 'O%') NOT NULL,
+	CONSTRAINT PK_PeopleOccupation PRIMARY KEY(PersonID,OccupationID),
+	CONSTRAINT FK_People1 FOREIGN KEY (PersonID) REFERENCES People(PersonID),
+	CONSTRAINT FK_Occupation FOREIGN KEY (OccupationID) REFERENCES Skills(SkillID)
 );
 
 /*ChallengeLevel Table*/
 CREATE TABLE ChallengeLevel(
-	ChallengeLevelID VARCHAR(8) CHECK(ChallengeLevelID LIKE 'CL%') NOT NULL Primary KEY,
+	ChallengeLevelID VARCHAR(8) CHECK(ChallengeLevelID LIKE 'CL%') NOT NULL UNIQUE,
 	Description VARCHAR(30) NOT NULL,
 	ChanceOfDeath VARCHAR(30) NOT NULL,
-	NeedsGroupToKill VARCHAR(20) NOT NULL
+	NeedsGroupToKill VARCHAR(20) NOT NULL,
+	CONSTRAINT PK_ChallengeLevel PRIMARY KEY (ChallengeLevelID)
 );
 
 /*EnemyType Table*/
 CREATE TABLE EnemyType(
-	EnTypeID VARCHAR(8) CHECK(EnTypeID LIKE 'N%') NOT NULL Primary KEY,
+	EnTypeID VARCHAR(8) CHECK(EnTypeID LIKE 'N%') NOT NULL UNIQUE,
 	Designation CHAR(30) NOT NULL,
 	Challange VARCHAR(8) NOT NULL,
 	Bounty INT NOT NULL,
 	CurrencyID VARCHAR(8) NOT NULL,
-	FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID),
-	FOREIGN KEY (ChallengeLevelID) REFERENCES ChallengeLevel(ChallengeLevelID) 
+	CONSTRAINT PK_EnemeyType PRIMARY KEY (EnTypeID),
+	CONSTRAINT FK_EnemyType1 FOREIGN KEY (CurrencyID) REFERENCES Currency(CurrencyID),
+	CONSTRAINT FK_EnemyType2 FOREIGN KEY (ChallengeLevelID) REFERENCES ChallengeLevel(ChallengeLevelID) 
 );
 
 /*Enemies Table*/
 CREATE TABLE Enemies(
-	EnemyID VARCHAR(8) CHECK(EnemyID LIKE 'E%') NOT NULL Primary KEY,
+	EnemyID VARCHAR(8) CHECK(EnemyID LIKE 'E%') NOT NULL UNIQUE,
 	SpecificLandmarkID VARCHAR(8) NOT NULL,
 	Alive INT NOT NULL,
 	Name Char(30) NULL,
 	EnTypeID VARCHAR(8) NOT NULL,
-	FOREIGN KEY (SpecificLandmarkID) REFERENCES RegionLandmarks(SpecificLandmarkID),
-	FOREIGN KEY (EnTypeID) REFERENCES EnemyType(EnTypeID)
+	CONSTRAINT PK_Enemies PRIMARY KEY (EnemyID),
+	CONSTRAINT FK_Enemies1 FOREIGN KEY (SpecificLandmarkID) REFERENCES RegionLandmarks(SpecificLandmarkID),
+	CONSTRAINT FK_Enemies2 FOREIGN KEY (EnTypeID) REFERENCES EnemyType(EnTypeID)
 );
 
 /*AvailableRoutes Table*/
